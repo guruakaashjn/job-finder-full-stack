@@ -18,6 +18,6 @@ router.get("/check-auth", (req, res) => {
 });
 
 
-router.get("/user/:id", getUserProfile);
+router.get("/users/:id", getUserProfile);
 
 export default router;
