@@ -24,9 +24,6 @@ import {
 import { Badge } from "@/Components/ui/badge";
 
 export default function Home() {
-  const { isAuthenticated } = useGlobalContext();
-  console.log(isAuthenticated);
-
   const features = [
     {
       icon: <Briefcase className="w-6 h-6 text-[#7263f3]" />,
