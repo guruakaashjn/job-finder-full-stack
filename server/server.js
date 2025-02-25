@@ -14,13 +14,17 @@ const app = express();
 const serverPort = process.env.SERVER_PORT;
 const clientPort = process.env.CLIENT_PORT;
 
+// auth0 configs
 const config = {
     authRequired: false,
     auth0Logout: true,
     secret: process.env.SECRET,
     baseURL: `${process.env.BASE_URL}${serverPort}`,
     clientID: process.env.CLIENT_ID,
-    issuerBaseURL: process.env.ISSUER_BASE_URL
+    issuerBaseURL: process.env.ISSUER_BASE_URL,
+    routes: {
+        postLogoutRedirect: `${process.env.CLIENT_URL}${process.env.CLIENT_PORT}`,
+    }
 };
 
 // Setup required Middlewares.
