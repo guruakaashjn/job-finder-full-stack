@@ -14,6 +14,22 @@ export const GlobalContextProvider = ({ children }) => {
     const [ userProfile, setUserProfile ] = useState({});
     const [ loading, setLoading ] = useState(false);
 
+    // input states
+    const [ jobTitle, setJobTitle ] = useState("");
+    const [ jobDescription, setJobDescription ] = useState("");
+    const [ salary, setSalary ] = useState(0);
+    const [ activeEmploymentTypes, setActiveEmploymentTypes ] = useState([]);
+    const [ salaryType, setSalaryType ] = useState("Year");
+    const [ negotiable, setNegotiable ] = useState(false);
+    const [ tags, setTags ] = useState([]);
+    const [ skills, setSkills ] = useState([]);
+    const [ location, setLocation ] = useState({
+        country: "",
+        city: "",
+        address: "",
+    });
+
+
     useEffect(() => {
         const checkAuth = async () => {
             setLoading(true);
@@ -47,8 +63,40 @@ export const GlobalContextProvider = ({ children }) => {
         }
     }, [ isAuthenticated, auth0User ]);
 
+
+    // handle input change
+    const handleTitleChange = (e) => {
+        setJobTitle(e.target.value.trimStart());
+    };
+    const handleDescriptionChange = (e) => {
+        setJobDescription(e.target.value.trimStart());
+    };
+    const handleSalaryChange = (e) => {
+        setSalary(e.target.value);
+    };
+
+
     return (
-        <GlobalContext.Provider value={{ isAuthenticated, auth0User, userProfile, getUserProfile, loading }}>
+        <GlobalContext.Provider value={{
+            isAuthenticated,
+            auth0User,
+            userProfile,
+            getUserProfile,
+            loading,
+            jobTitle,
+            jobDescription,
+            salary,
+            activeEmploymentTypes,
+            salaryType,
+            negotiable,
+            tags,
+            skills,
+            location,
+            handleTitleChange,
+            handleDescriptionChange,
+            handleSalaryChange,
+            setActiveEmploymentTypes,
+        }}>
             {children}
         </GlobalContext.Provider>
     );
